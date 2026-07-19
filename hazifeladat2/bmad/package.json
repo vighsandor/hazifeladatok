@@ -1,0 +1,21 @@
+{
+  "name": "customer-api-bmad",
+  "version": "1.0.0",
+  "description": "REST API customers - BMAD PRD alapú megközelítés",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test tests/",
+    "seed": "node prisma/seed.js",
+    "db:migrate": "npx prisma migrate dev",
+    "db:generate": "npx prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.17.0",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.17.0"
+  }
+}
