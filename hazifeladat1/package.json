@@ -1,0 +1,52 @@
+{
+  "name": "plantbase",
+  "version": "0.1.0",
+  "private": true,
+  "description": "plantbase — text-to-SQL növénykatalógus agent (Nx monorepo: core + cli)",
+  "type": "module",
+  "packageManager": "[email protected]",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:wait": "node scripts/wait-for-db.mjs",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:setup": "pnpm db:up && pnpm db:wait && pnpm db:migrate && pnpm db:generate && pnpm db:seed",
+    "db:reset": "prisma migrate reset --force --skip-generate && pnpm db:seed",
+    "ask": "tsx apps/cli/src/main.ts ask",
+    "chat": "tsx apps/cli/src/main.ts chat",
+    "plantbase": "tsx apps/cli/src/main.ts",
+    "typed-categories": "tsx scripts/typed-categories.ts",
+    "typecheck": "tsc -p packages/core/tsconfig.json --noEmit && tsc -p apps/cli/tsconfig.json --noEmit",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "dotenv": "^17.4.2",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "@types/pg": "^8.20.0",
+    "nx": "^21.6.11",
+    "prettier": "^3.9.5",
+    "prisma": "^6.19.3",
+    "tsx": "^4.23.1",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "prisma",
+      "@prisma/client",
+      "@prisma/engines"
+    ]
+  }
+}

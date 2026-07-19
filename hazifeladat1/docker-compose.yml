@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16
+    container_name: plantbase-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: plantbase
+      POSTGRES_PASSWORD: plantbase
+      POSTGRES_DB: plantbase
+    ports:
+      - '5432:5432'
+    volumes:
+      - plantbase-pgdata:/var/lib/postgresql/data
+      # Első induláskor lefut: létrehozza a csak-olvasó DB role-t.
+      - ./docker/initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U plantbase -d plantbase']
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  plantbase-pgdata:

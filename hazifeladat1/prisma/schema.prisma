@@ -1,0 +1,33 @@
+// plantbase — adatbázis séma
+// A `products` az egyetlen tábla: a növénykatalógus.
+// A séma az "app-réteg" (L2) forrása; a migrációkat és a seedet a Prisma kezeli.
+// Az agent NEM ezen keresztül olvas, hanem nyers, csak-olvasó SQL-lel (runSql tool).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id             Int      @id @default(autoincrement())
+  name           String // köznapi (magyar) név
+  scientificName String   @map("scientific_name") // latin név
+  category       String // kategória (a pontos értékeket a list_categories tool adja)
+  price          Int // ár forintban (Ft)
+  sizeCategory   String   @map("size_category") // 'kicsi' | 'közepes' | 'nagy'
+  heightCm       Int      @map("height_cm") // becsült magasság cm-ben
+  lightNeed      String   @map("light_need") // 'alacsony' | 'közepes' | 'erős'
+  waterFrequency String   @map("water_frequency") // 'ritka' | 'heti' | 'gyakori'
+  careLevel      String   @map("care_level") // 'könnyű' | 'közepes' | 'nehéz'
+  petSafe        Boolean  @map("pet_safe") // háziállat-barát (true = macska/kutya biztonságos)
+  color          String // domináns szín / lombszín (szabad szöveg)
+  inStock        Int      @map("in_stock") // raktárkészlet (db)
+  description    String // rövid leírás
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@map("products")
+}
