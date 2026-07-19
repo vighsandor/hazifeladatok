@@ -1,0 +1,17 @@
+{
+  "Budapest": {"lat": 47.4979, "lon": 19.0402},
+  "Debrecen": {"lat": 47.5316, "lon": 21.6273},
+  "Szeged": {"lat": 46.2530, "lon": 20.1414},
+  "Miskolc": {"lat": 48.1035, "lon": 20.7784},
+  "Pécs": {"lat": 46.0727, "lon": 18.2324},
+  "Győr": {"lat": 47.6875, "lon": 17.6504},
+  "Nyíregyháza": {"lat": 47.9559, "lon": 21.7272},
+  "Kecskemét": {"lat": 46.9063, "lon": 19.6897},
+  "Székesfehérvár": {"lat": 47.1925, "lon": 18.4108},
+  "Szombathely": {"lat": 47.2307, "lon": 16.6218},
+  "Eger": {"lat": 47.9027, "lon": 20.3773},
+  "Veszprém": {"lat": 47.0929, "lon": 17.9093},
+  "Sopron": {"lat": 47.6850, "lon": 16.5839},
+  "Kaposvár": {"lat": 46.3599, "lon": 17.7967},
+  "Zalaegerszeg": {"lat": 46.8419, "lon": 16.8468}
+}
