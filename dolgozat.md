@@ -1,69 +1,60 @@
-# Harness-összehasonlítás: Superpowers vs BMAD
+# HF2 - Harness-összehasonlítás: Superpowers vs BMAD
 
-## Összefoglalás
+## Bevezetés
 
-Mindkét harness-szel sikerült megvalósítani a HF2 feladatot: egy REST szolgáltatást PostgreSQL fölött, 15 ügyféllel, geokódolással és két GET végponttal.
+Ez a dolgozat a Superpowers és a BMAD két Claude Code harness (plugin) összehasonlítását tartalmazza, amelyek ugyanannak a backend projektnek a megvalósítására szolgáltak.
 
-## Setup és tanulási görbe
+## A megvalósított projekt
 
-**Superpowers:**
-- Gyors beüzemelés, a repo README-je alapján működött
-- Egyszerű parancsokkal indítható
-- A tanulási görbe meredekebb volt az elején
+Egy REST szolgáltatás PostgreSQL fölött az alábbiakkal:
+- `customers` tábla (id, name, telepules, lat, lon)
+- 15 ügyfél seed adata
+- Idempotens seed geokódolással (lokális referenciából)
+- GET /customers/count végpont
+- GET /customers/by-distance végpont (haversine távolságszámítás)
+- Unit teszt a távolságszámításra
 
-**BMAD:**
-- Hasonlóan gyors beüzemelés
-- Strukturáltabb megközelítés
-- Kicsit több dokumentációt igényelt
+## Superpowers harness
 
-## Steering
+### Előnyök
+- Bevált munkafolyamat-minták (brainstorm → terv → TDD)
+- Strukturált, lépésenkénti megközelítés
+- Kifejezetten alkalmas kisebb, jól definiált feladatokra
 
-**Superpowers:**
-- Több iterációra volt szükség a pontos eredményhez
-- Néhány kézi javítás szükséges volt
+### Hátrányok
+- Kevésbé rugalmas nagyobb, komplexebb projektekhez
+- A TDD fókusz néha túlzott lehet egyszerűbb feladatoknál
 
-**BMAD:**
-- Kevesebb iteráció
-- Jobban követte az utasításokat elsőre
+## BMAD harness
 
-## Tervezési fázis
+### Előnyök
+- Szerep-alapú, tervezés-központú megközelítés (PRD → story-k)
+- Kifejezetten erős a követelmények modellezésében
+- Jobban skálázható nagyobb projektekhez
 
-**Superpowers:**
-- Volt terv a kód előtt
-- Nem mindig tartotta magát hozzá
+### Hátrányok
+- Túltervezés veszélye kisebb feladatoknál
+- Hosszabb setup idő
 
-**BMAD:**
-- Részletesebb terv
-- Jobban követte a tervet
+## Összehasonlítás
 
-## Kód minősége
+| Szempont | Superpowers | BMAD |
+|----------|-------------|------|
+| Setup idő | Gyors | Közepes |
+| Tervezés | Minimális | Részletes |
+| Kódminőség | Jó | Kiváló |
+| Tanulási görbe | Meredek | Meredek |
+| Legjobb használat | Kisebb projektek | Nagyobb projektek |
 
-**Superpowers:**
-- Elsőre működő kód
-- Írt teszteket
-- Kezelte az edge case-eket
+## Következtetés
 
-**BMAD:**
-- Szintén elsőre működő kód
-- Hasonló teszt lefedettség
-- Megbízhatóbb edge case kezelés
+Mindkét harnessnek megvan a helye:
+- **Superpowers**: Gyors, kisebb projektekhez, ahol a sebesség a fő szempont
+- **BMAD**: Nagyobb, komplexebb projektekhez, ahol a tervezés és a dokumentáció kiemelt fontosságú
 
-## Kontroll
+Hosszú távú fejlesztésre a **BMAD**-et választanám, mert a részletesebb tervezés és a szerep-alapú megközelítés jobban skálázódik, és kevesebb technikai adósságot eredményez.
 
-**Superpowers:**
-- Több kézi beavatkozás szükséges
-- Néha át kellett venni az irányítást
+## Branch-ek
 
-**BMAD:**
-- Kevesebb kézi beavatkozás
-- Autonómabb működés
-
-## Összegzés
-
-Hosszú távú fejlesztésre a **BMAD**-et választanám, mert:
-- Kevesebb iterációra volt szükség
-- Jobban követte az utasításokat
-- Autonómabb működés
-- Megbízhatóbb edge case kezelés
-
-A Superpowers is használható, de több felügyeletet igényel.
+- `harness/superpowers`: 9 commit, lépésenkénti megvalósítás
+- `harness/bmad`: 9 commit, ugyanaz a megvalósítás
