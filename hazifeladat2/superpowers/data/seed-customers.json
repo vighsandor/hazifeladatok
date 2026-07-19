@@ -1,0 +1,17 @@
+[
+  {"name": "Nagy András", "telepules": "Budapest"},
+  {"name": "Kiss Éva", "telepules": "Debrecen"},
+  {"name": "Szabó Béla", "telepules": "Szeged"},
+  {"name": "Horváth Mária", "telepules": "Miskolc"},
+  {"name": "Varga Péter", "telepules": "Pécs"},
+  {"name": "Kovács Ilona", "telepules": "Győr"},
+  {"name": "Tóth János", "telepules": "Nyíregyháza"},
+  {"name": "Takács Katalin", "telepules": "Kecskemét"},
+  {"name": "Szűcs Gábor", "telepules": "Székesfehérvár"},
+  {"name": "Molnár Zsuzsanna", "telepules": "Szombathely"},
+  {"name": "Balogh Ferenc", "telepules": "Eger"},
+  {"name": "Németh Anna", "telepules": "Veszprém"},
+  {"name": "Farkas Dóra", "telepules": "Sopron"},
+  {"name": "Oláh Csaba", "telepules": "Kaposvár"},
+  {"name": "Gergely Eszter", "telepules": "Zalaegerszeg"}
+]
