@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-pg", "--read-only",
+               "postgresql://ro_user:ro_pass@10.0.0.106:5432/hf2"]
+    }
+  }
+}
