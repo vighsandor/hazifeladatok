@@ -1,0 +1,30 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import { pool } from './db';
+import { seed } from './seed';
+import routes from './routes';
+
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+
+app.use('/customers', routes);
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
+const start = async () => {
+  try {
+    console.log('[INFO] Seeding database...');
+    await seed();
+    console.log('[INFO] Seed complete');
+
+    app.listen({{config.server.port}}, '{{config.server.host}}', () => {
+      console.log(`[INFO] Server running on http://{{config.server.host}}:{{config.server.port}}`);
+    });
+  } catch (err) {
+    console.error('[ERROR] Startup failed', err);
+    process.exit(1);
+  }
+};
+
+start();
