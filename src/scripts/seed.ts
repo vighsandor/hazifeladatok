@@ -12,6 +12,13 @@ interface SeedCustomer {
 
 async function runSeed() {
   try {
+    // Optional: Reset database if RESET_DB env var is set
+    if (process.env.RESET_DB === 'true') {
+      console.log('⚠️  RESET_DB=true: Clearing all customers from database...');
+      await query('DELETE FROM customers;');
+      console.log('✓ Database cleared');
+    }
+
     // Load seed data
     const seedPath = path.join(process.cwd(), 'seed-customers.json');
     const seedData = JSON.parse(fs.readFileSync(seedPath, 'utf-8')) as SeedCustomer[];

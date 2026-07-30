@@ -19,7 +19,7 @@ export const cityCoordinates: CityCoordinate[] = [
   { city: 'Lisbon', lat: 38.7223, lon: -9.1393 },
   { city: 'Amsterdam', lat: 52.3676, lon: 4.9041 },
   { city: 'Stockholm', lat: 59.3293, lon: 18.0686 },
-  { city: 'Ljubljana', lat: 46.0569, lon: 14.5058 },
+  // { city: 'Ljubljana', lat: 46.0569, lon: 14.5058 }, // REMOVED FOR TEST
   { city: 'Bucharest', lat: 44.4268, lon: 26.1025 },
   { city: 'Dublin', lat: 53.3498, lon: -6.2603 },
   { city: 'Copenhagen', lat: 55.6761, lon: 12.5683 },
