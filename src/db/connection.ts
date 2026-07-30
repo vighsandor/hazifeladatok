@@ -1,4 +1,24 @@
 import { Pool } from 'pg';
+import * as fs from 'fs';
+import * as path from 'path';
+
+// Load .env manually (no dotenv package)
+function loadEnv() {
+  const envPath = path.join(process.cwd(), '.env');
+  if (fs.existsSync(envPath)) {
+    const envContent = fs.readFileSync(envPath, 'utf-8');
+    envContent.split('\n').forEach((line) => {
+      if (line.trim() && !line.startsWith('#')) {
+        const [key, value] = line.split('=');
+        if (key && value) {
+          process.env[key.trim()] = value.trim();
+        }
+      }
+    });
+  }
+}
+
+loadEnv();
 
 const databaseUrl = process.env.DATABASE_URL;
 
