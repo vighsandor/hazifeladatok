@@ -1,0 +1,122 @@
+[
+  {
+    "id": "ETSI EN 319 102-1",
+    "title": "ESI; Procedures for Creation and Validation of AdES Digital Signatures; Part 1: Creation and Validation",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31910201/01.04.01_60/en_31910201v010401p.pdf",
+    "file": "ETSI_EN_319_102-1.pdf"
+  },
+  {
+    "id": "ETSI EN 319 122-1",
+    "title": "ESI; CAdES digital signatures; Part 1: Building blocks and CAdES baseline signatures",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31912201/01.03.01_60/en_31912201v010301p.pdf",
+    "file": "ETSI_EN_319_122-1.pdf"
+  },
+  {
+    "id": "ETSI EN 319 122-2",
+    "title": "ESI; CAdES digital signatures; Part 2: Extended CAdES signatures",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31912202/01.01.01_60/en_31912202v010101p.pdf",
+    "file": "ETSI_EN_319_122-2.pdf"
+  },
+  {
+    "id": "ETSI TS 119 122-3",
+    "title": "ESI; CAdES digital signatures; Part 3: Incorporation of Evidence Record Syntax (ERS) mechanisms in CAdES",
+    "url": "https://www.etsi.org/deliver/etsi_ts/119100_119199/11912203/01.01.01_60/ts_11912203v010101p.pdf",
+    "file": "ETSI_TS_119_122-3.pdf"
+  },
+  {
+    "id": "ETSI EN 319 132-1",
+    "title": "ESI; XAdES digital signatures; Part 1: Building blocks and XAdES baseline signatures",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31913201/01.02.01_60/en_31913201v010201p.pdf",
+    "file": "ETSI_EN_319_132-1.pdf"
+  },
+  {
+    "id": "ETSI EN 319 132-2",
+    "title": "ESI; XAdES digital signatures; Part 2: Extended XAdES signatures",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31913202/01.01.01_60/en_31913202v010101p.pdf",
+    "file": "ETSI_EN_319_132-2.pdf"
+  },
+  {
+    "id": "ETSI TS 119 132-3",
+    "title": "ESI; XAdES digital signatures; Part 3: Incorporation of Evidence Record Syntax (ERS) mechanisms in XAdES",
+    "url": "https://www.etsi.org/deliver/etsi_ts/119100_119199/11913203/01.01.01_60/ts_11913203v010101p.pdf",
+    "file": "ETSI_TS_119_132-3.pdf"
+  },
+  {
+    "id": "ETSI EN 319 142-1",
+    "title": "ESI; PAdES digital signatures; Part 1: Building blocks and PAdES baseline signatures",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31914201/01.01.01_60/en_31914201v010101p.pdf",
+    "file": "ETSI_EN_319_142-1.pdf"
+  },
+  {
+    "id": "ETSI EN 319 142-2",
+    "title": "ESI; PAdES digital signatures; Part 2: Additional PAdES signatures profiles",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31914202/01.01.01_60/en_31914202v010101p.pdf",
+    "file": "ETSI_EN_319_142-2.pdf"
+  },
+  {
+    "id": "ETSI TS 119 142-3",
+    "title": "ESI; PAdES digital signatures; Part 3: PAdES Document Time-stamp digital signatures (PAdES-DTS)",
+    "url": "https://www.etsi.org/deliver/etsi_ts/119100_119199/11914203/01.01.01_60/ts_11914203v010101p.pdf",
+    "file": "ETSI_TS_119_142-3.pdf"
+  },
+  {
+    "id": "ETSI EN 319 162-1",
+    "title": "ESI; Associated Signature Containers (ASiC); Part 1: Building blocks and ASiC baseline containers",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31916201/01.01.01_60/en_31916201v010101p.pdf",
+    "file": "ETSI_EN_319_162-1.pdf"
+  },
+  {
+    "id": "ETSI EN 319 162-2",
+    "title": "ESI; Associated Signature Containers (ASiC); Part 2: Additional ASiC containers",
+    "url": "https://www.etsi.org/deliver/etsi_en/319100_319199/31916202/01.01.01_60/en_31916202v010101p.pdf",
+    "file": "ETSI_EN_319_162-2.pdf"
+  },
+  {
+    "id": "ETSI TS 119 312",
+    "title": "ESI; Cryptographic Suites",
+    "url": "https://www.etsi.org/deliver/etsi_ts/119300_119399/119312/01.04.01_60/ts_119312v010401p.pdf",
+    "file": "ETSI_TS_119_312.pdf"
+  },
+  {
+    "id": "ETSI EN 319 401",
+    "title": "ESI; General Policy Requirements for Trust Service Providers",
+    "url": "https://www.etsi.org/deliver/etsi_en/319400_319499/319401/01.01.01_60/en_319401v010101p.pdf",
+    "file": "ETSI_EN_319_401.pdf"
+  },
+  {
+    "id": "ETSI EN 319 411-1",
+    "title": "ESI; Policy and security requirements for Trust Service Providers issuing certificates; Part 1: General requirements",
+    "url": "https://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.04.01_60/en_31941101v010401p.pdf",
+    "file": "ETSI_EN_319_411-1.pdf"
+  },
+  {
+    "id": "ETSI EN 319 411-2",
+    "title": "ESI; Policy and security requirements for Trust Service Providers issuing certificates; Part 2: Requirements for TSPs issuing EU qualified certificates",
+    "url": "https://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.06.01_60/en_31941102v020601p.pdf",
+    "file": "ETSI_EN_319_411-2.pdf"
+  },
+  {
+    "id": "ETSI EN 319 412-1",
+    "title": "ESI; Certificate Profiles; Part 1: Overview and common data structures",
+    "url": "https://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.04.04_60/en_31941201v010404p.pdf",
+    "file": "ETSI_EN_319_412-1.pdf"
+  },
+  {
+    "id": "ETSI EN 319 412-2",
+    "title": "ESI; Certificate Profiles; Part 2: Certificate profile for certificates issued to natural persons",
+    "url": "https://www.etsi.org/deliver/etsi_en/319400_319499/31941202/02.02.01_60/en_31941202v020201p.pdf",
+    "file": "ETSI_EN_319_412-2.pdf"
+  },
+  {
+    "id": "ETSI EN 319 412-3",
+    "title": "ESI; Certificate Profiles; Part 3: Certificate profile for certificates issued to legal persons",
+    "url": "https://www.etsi.org/deliver/etsi_en/319400_319499/31941203/01.02.01_60/en_31941203v010201p.pdf",
+    "file": "ETSI_EN_319_412-3.pdf"
+  },
+  {
+    "id": "ETSI EN 319 422",
+    "title": "ESI; Time-stamping protocol and time-stamp token profiles",
+    "url": "https://www.etsi.org/deliver/etsi_en/319400_319499/319422/01.01.01_60/en_319422v010101p.pdf",
+    "file": "ETSI_EN_319_422.pdf"
+  }
+]
