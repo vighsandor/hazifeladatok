@@ -1,5 +1,6 @@
 import { embedQuery, rawSearch } from './rawSearch.js';
 import { hydeAnswer } from './hyde.js';
+import { rerank } from './rerank.js';
 import { closePool } from '../db.js';
 
 const questions = [
@@ -9,32 +10,33 @@ const questions = [
 ];
 
 async function searchPreview() {
-  console.log('\n🔍 HyDE Search Comparison\n');
+  console.log('\n🔍 Rerank Search Comparison\n');
   console.log('═══════════════════════════════════════════════════\n');
 
   for (const question of questions) {
     console.log(`❓ Query: "${question}"\n`);
 
-    // (a) HyDE answer
-    console.log('(a) HyDE Generated Answer:');
+    // HyDE search top-20
     const hydeText = await hydeAnswer(question);
-    console.log(`"${hydeText}"\n`);
+    const hydeEmbedding = await embedQuery(hydeText);
+    const candidates = await rawSearch(hydeEmbedding, 20);
 
-    // (b) Raw search (question embedding)
-    console.log('(b) Raw Search (Question Embedding) - Top 3:');
-    const queryEmbedding = await embedQuery(question);
-    const rawHits = await rawSearch(queryEmbedding, 3);
-    for (const hit of rawHits) {
-      console.log(`  ${hit.distance.toFixed(4)} · ${hit.source_id} · ${hit.clause_path}`);
+    // (a) Original HyDE search top-5
+    console.log('(a) HyDE Search - Original Top 5:');
+    for (let i = 0; i < Math.min(5, candidates.length); i++) {
+      const hit = candidates[i];
+      console.log(
+        `  ${i + 1}. ${hit.distance.toFixed(4)} · ${hit.source_id} · ${hit.clause_path}`
+      );
     }
     console.log('');
 
-    // (c) HyDE search (HyDE embedding)
-    console.log('(c) HyDE Search (HyDE Text Embedding) - Top 3:');
-    const hydeEmbedding = await embedQuery(hydeText);
-    const hydeHits = await rawSearch(hydeEmbedding, 3);
-    for (const hit of hydeHits) {
-      console.log(`  ${hit.distance.toFixed(4)} · ${hit.source_id} · ${hit.clause_path}`);
+    // (b) Reranked top-5
+    console.log('(b) Reranked - Top 5:');
+    const rerankResults = await rerank(question, candidates);
+    for (let i = 0; i < rerankResults.length; i++) {
+      const hit = rerankResults[i];
+      console.log(`  ${i + 1}. ${hit.score} · ${hit.source_id} · ${hit.clause_path}`);
     }
 
     console.log('\n───────────────────────────────────────────────────\n');
