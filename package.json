@@ -9,6 +9,7 @@
     "ask": "tsx src/ask.ts",
     "debug": "tsx src/debug.ts",
     "preview": "tsx src/ingest/preview.ts",
+    "chunk:preview": "tsx src/ingest/chunk-preview.ts",
     "test": "vitest"
   },
   "dependencies": {
