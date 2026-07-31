@@ -11,18 +11,41 @@ export interface LoadedDoc {
 }
 
 export function cleanEtsiText(raw: string): string {
-  let text = raw;
+  // Fix line-end hyphenation before splitting
+  let text = raw.replace(/-\n(\w)/g, '$1');
 
-  text = text.replace(/^ETSI\s+(EN|TS)\s+(319|119)\s+\d+[-/]\d+.*$/gm, '');
-  text = text.replace(/^\s*ETSI\s*$/gm, '');
-  text = text.replace(/^\s*\d+\s*$/gm, '');
-  text = text.replace(/^.+\s+\.+\s+\d+\s*$/gm, '');
-  text = text.replace(/History[\s\S]*$/i, '');
-  text = text.replace(/Intellectual Property Rights\s*[\s\S]*?(?=\n\n|$)/gi, '');
-  text = text.replace(/Modal verbs terminology\s*[\s\S]*?(?=\n\n|$)/gi, '');
-  text = text.replace(/-\n/g, '');
-  text = text.replace(/ +/g, ' ');
-  text = text.replace(/\n\n\n+/g, '\n\n');
+  // Split into lines
+  const lines = text.split(/\r?\n/);
+
+  // Filter lines
+  const filtered = lines.filter((line) => {
+    const trimmed = line.trim();
+
+    // Keep empty lines
+    if (!trimmed) return true;
+
+    // Remove ETSI-only lines
+    if (trimmed === 'ETSI') return false;
+
+    // Remove ETSI header lines (running headers)
+    if (/^ETSI\s+(EN|TS)\s+\d/.test(trimmed)) return false;
+
+    // Remove version pattern lines (V1.2.1 (2022-02))
+    if (/V\d+\.\d+\.\d+\s*\(\d{4}-\d{2}\)/.test(trimmed)) return false;
+
+    // Remove page numbers (1-4 digits only)
+    if (/^\d{1,4}$/.test(trimmed)) return false;
+
+    // Remove TOC lines (3+ dots followed by page number)
+    if (/\.{3,}\s*\d+\s*$/.test(trimmed)) return false;
+
+    return true;
+  });
+
+  // Join back and normalize spacing
+  text = filtered.join('\n');
+  text = text.replace(/[ \t]{2,}/g, ' ');
+  text = text.replace(/\n{3,}/g, '\n\n');
 
   return text.trim();
 }

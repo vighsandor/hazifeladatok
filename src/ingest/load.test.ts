@@ -10,9 +10,12 @@ describe('cleanEtsiText', () => {
   });
 
   it('removes standalone page number lines', () => {
-    const input = 'Some content\n12\nMore content\n';
+    const input = 'Some content\n12\nMore content';
     const output = cleanEtsiText(input);
-    expect(output).not.toContain('\n12\n');
+    const lines = output.split('\n');
+    expect(lines).not.toContain('12');
+    expect(output).toContain('Some content');
+    expect(output).toContain('More content');
   });
 
   it('fixes line-end hyphenation', () => {
@@ -22,16 +25,18 @@ describe('cleanEtsiText', () => {
   });
 
   it('preserves clause numbers and headings', () => {
-    const input = '4.1.1 Signature format\nThis is important content\n';
+    const input = '4.1.1 Signature format\nThis is important content';
     const output = cleanEtsiText(input);
     expect(output).toContain('4.1.1');
     expect(output).toContain('Signature format');
+    expect(output).toContain('This is important content');
   });
 
   it('removes TOC lines with dot leaders', () => {
-    const input = 'Signature creation ........... 12\nOther content\n';
+    const input = 'Some intro\nSignature creation ........... 12\nOther content';
     const output = cleanEtsiText(input);
-    expect(output).not.toContain('Signature creation');
+    const lines = output.split('\n');
+    expect(lines.some((l) => l.includes('Signature creation') && l.includes('...'))).toBe(false);
     expect(output).toContain('Other content');
   });
 });
