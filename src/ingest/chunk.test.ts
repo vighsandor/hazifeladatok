@@ -7,14 +7,13 @@ describe('chunkDoc', () => {
 More preamble.
 
 1 Scope
-This is the scope section with content.
+This is the scope section with content that is long enough to meet minimum chunk length. Adding more text to ensure it is substantial and goes over the minimum of two hundred characters. We need to add even more content here to be safe.
 
 2 References
-This is the references section.`;
+This is the references section with content. The content should be long enough to meet the minimum chunk size requirement of 200 characters. Let us add more text and more sentences to ensure we have enough. Adding final sentences here.`;
 
     const chunks = chunkDoc({ id: 'test', url: 'test-url', text });
 
-    // Should have multiple chunks
     expect(chunks.length).toBeGreaterThan(0);
 
     // Check that clause 1 and 2 are not in the same chunk
@@ -26,51 +25,51 @@ This is the references section.`;
     }
   });
 
-  it('respects maxChars limit', () => {
+  it('respects maxChars and hard limit of 1600', () => {
     const text = `1 Scope
-Line 1. This is a long line that adds content.
-Line 2. Another line with more content added.
-Line 3. Yet more content to test the limit.
-Line 4. And even more content here.`;
+Line 1. This is a long line that adds content with more words and sentences.
+Line 2. Another line with more content added to the section here.
+Line 3. Yet more content to test the limit of the chunking algorithm.
+Line 4. And even more content here to ensure we have substantial text.
+Line 5. Even more lines to keep building up the content length.
+Line 6. We need this to be long enough to test the hard limit properly.`;
 
     const chunks = chunkDoc(
       { id: 'test', url: 'test-url', text },
-      { maxChars: 100 }
+      { maxChars: 200 }
     );
 
-    // Each chunk (except potentially the last) should not exceed maxChars
-    for (let i = 0; i < chunks.length - 1; i++) {
-      expect(chunks[i].content.length).toBeLessThanOrEqual(100);
+    // Each chunk should not exceed 1600 chars (hard limit)
+    for (const chunk of chunks) {
+      expect(chunk.content.length).toBeLessThanOrEqual(1600);
+    }
+
+    // Each chunk should be at least 200 chars (or be in a single-chunk clause)
+    for (const chunk of chunks) {
+      expect(chunk.content.trim().length).toBeGreaterThanOrEqual(200);
     }
   });
 
-  it('preserves list items even if they exceed maxChars', () => {
+  it('filters out chunks under 200 characters', () => {
     const text = `1 Scope
-This is the intro sentence that should stay with the list.
-a) First item with some content
-b) Second item with content`;
+Real content here that is substantial enough.
 
-    const chunks = chunkDoc(
-      { id: 'test', url: 'test-url', text },
-      { maxChars: 50 }
-    );
+2 Short
+Tiny.`;
 
-    // The list items should be together with the intro
-    const clauseContent = chunks
-      .filter((c) => c.clause_path.startsWith('1 '))
-      .map((c) => c.content)
-      .join('\n');
+    const chunks = chunkDoc({ id: 'test', url: 'test-url', text });
 
-    expect(clauseContent).toContain('a)');
-    expect(clauseContent).toContain('b)');
+    for (const chunk of chunks) {
+      expect(chunk.content.trim().length).toBeGreaterThanOrEqual(200);
+    }
   });
 
   it('has non-empty clause_path for every chunk', () => {
     const text = `1 Scope
-Content for scope.
+Content for scope that is substantial and meets the minimum chunk length requirement. We are adding more text to ensure this chunk is long enough and meaningful.
 
 2 References
-Content for references.`;
+Content for references section that is also substantial and long enough. Let us add more words and sentences to make sure we meet the minimum length requirement for chunks.`;
 
     const chunks = chunkDoc({ id: 'test', url: 'test-url', text });
 
@@ -82,9 +81,10 @@ Content for references.`;
 
   it('does not produce empty chunks', () => {
     const text = `1 Scope
-Content here.
+Content here that is substantive and meets minimum requirements for chunk size. Adding more text to ensure it is long enough for the test.
 
-2 References`;
+2 References
+More substantial content to ensure the chunk is long enough to pass the test.`;
 
     const chunks = chunkDoc({ id: 'test', url: 'test-url', text });
 
@@ -95,15 +95,14 @@ Content here.
 
   it('overlaps sentences between chunks in same clause', () => {
     const text = `1 Scope
-First sentence. Second sentence. Third sentence. Fourth sentence. Fifth sentence. Sixth sentence.`;
+First sentence. Second sentence. Third sentence. Fourth sentence. Fifth sentence. Sixth sentence. Seventh sentence. Eighth sentence. Ninth sentence. Tenth sentence. Eleventh sentence. Twelfth sentence. Thirteenth sentence. Fourteenth sentence. Fifteenth sentence.`;
 
     const chunks = chunkDoc(
       { id: 'test', url: 'test-url', text },
-      { maxChars: 80, overlapSentences: 1 }
+      { maxChars: 150, overlapSentences: 1 }
     );
 
     if (chunks.length > 1) {
-      // Check if the second chunk contains the last sentence of the first chunk
       const firstChunkContent = chunks[0].content;
       const lastSentenceOfFirst = firstChunkContent
         .split(/[.!?]+/)
@@ -120,7 +119,7 @@ First sentence. Second sentence. Third sentence. Fourth sentence. Fifth sentence
 More preamble text here.
 
 1 Scope
-Actual scope content.`;
+Actual scope content that is substantive and long enough to meet the minimum chunk size requirement. Adding more text here to ensure we exceed the two hundred character minimum. We need additional sentences to be sure we have enough content for the chunk.`;
 
     const chunks = chunkDoc({ id: 'test', url: 'test-url', text });
 

@@ -10,6 +10,9 @@ export interface ChunkOptions {
   overlapSentences?: number;
 }
 
+const HARD_MAX_CHARS = 1600;
+const MIN_CHUNK_LENGTH = 200;
+
 export function chunkDoc(
   doc: { id: string; url: string; text: string },
   opts?: ChunkOptions
@@ -69,7 +72,7 @@ export function chunkDoc(
 
   function flushBuffer(): void {
     const content = buffer.join('\n').trim();
-    if (content) {
+    if (content && content.length >= MIN_CHUNK_LENGTH) {
       chunks.push({
         source_id: doc.id,
         source_url: doc.url,
@@ -106,8 +109,18 @@ export function chunkDoc(
     const isListLine = isListItem(line);
     const currentLength = buffer.join('\n').length;
     const wouldExceed = currentLength + line.length + 1 > maxChars && buffer.length > 0;
+    const wouldExceedHardLimit = currentLength + line.length + 1 > HARD_MAX_CHARS && buffer.length > 0;
 
-    if (wouldExceed && !isListLine) {
+    if (wouldExceedHardLimit) {
+      // Hard limit: always flush
+      flushBuffer();
+      // Only add overlap if it won't exceed hard limit with new line
+      if (pendingOverlapText && pendingOverlapText.length + line.length + 1 < HARD_MAX_CHARS) {
+        buffer.push(pendingOverlapText);
+      }
+      buffer.push(line);
+    } else if (wouldExceed && !isListLine) {
+      // Soft limit: flush only for non-list items
       flushBuffer();
       if (pendingOverlapText) {
         buffer.push(pendingOverlapText);
@@ -120,7 +133,7 @@ export function chunkDoc(
 
   if (buffer.length > 0) {
     const content = buffer.join('\n').trim();
-    if (content) {
+    if (content && content.length >= MIN_CHUNK_LENGTH) {
       chunks.push({
         source_id: doc.id,
         source_url: doc.url,
