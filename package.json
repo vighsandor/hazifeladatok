@@ -12,6 +12,8 @@
     "chunk:preview": "tsx src/ingest/chunk-preview.ts",
     "search:preview": "tsx src/search/search-preview.ts",
     "golden": "tsx src/golden.ts",
+    "db:dump": "node scripts/dump-db.mjs",
+    "db:restore": "node scripts/restore-db.mjs",
     "test": "vitest"
   },
   "dependencies": {
