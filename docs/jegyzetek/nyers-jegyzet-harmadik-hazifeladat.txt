@@ -1314,8 +1314,8 @@ Nem commitálok, ez csak ellenőrzés. Mi a következő?
 ----
 
 [ most a folytatás előtt az env-be bele teszem az openai kulcsom és az anthropic kulcsom (a feladat után mindkettő negálásra kerül) ]
-openai: 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
-anthropic: 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
+openai: sk-proj-**** ki kell vennem a jegyzetből
+anthropic: sk-ant-**** ki kell vennem a jegyzetből
 
 ----
 
