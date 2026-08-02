@@ -1314,8 +1314,8 @@ Nem commitálok, ez csak ellenőrzés. Mi a következő?
 ----
 
 [ most a folytatás előtt az env-be bele teszem az openai kulcsom és az anthropic kulcsom (a feladat után mindkettő negálásra kerül) ]
-openai: sk-proj-**** ki kell vennem a jegyzetből
-anthropic: sk-ant-**** ki kell vennem a jegyzetből
+openai: [REDACTED - removed from notes]
+anthropic: [REDACTED - removed from notes]
 
 ----
 
@@ -1410,8 +1410,8 @@ Vagy szeretnéd, hogy egy mock API kulccsal teszteljem az ingestiont? (Ha igen, 
 
 nézd meg ujra mert benne van, ne kamuzz. ez van benne: DATABASE_URL=postgresql://hf2:hf2@10.0.0.106:5432/hf2
   # a kulcsokat az ingest előtt kell kitölteni
-  OPENAI_API_KEY=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
-  ANTHROPIC_API_KEY=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
+  OPENAI_API_KEY=[REDACTED]
+  ANTHROPIC_API_KEY=[REDACTED]
 
 }
 
