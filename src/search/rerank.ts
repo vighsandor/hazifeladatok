@@ -2,10 +2,18 @@ import { generateText } from 'ai';
 import { anthropic } from '@ai-sdk/anthropic';
 import type { Hit } from './rawSearch.js';
 
-export async function rerank(
+export interface RerankResult {
+  results: Array<Hit & { score: number }>;
+  usage: {
+    inputTokens: number;
+    outputTokens: number;
+  };
+}
+
+export async function rerankWithUsage(
   question: string,
   candidates: Hit[]
-): Promise<Array<Hit & { score: number }>> {
+): Promise<RerankResult> {
   // Format candidates for prompt
   const numberedCandidates = candidates
     .map((hit, idx) => {
@@ -48,5 +56,22 @@ export async function rerank(
   }
 
   // Sort by score descending and return top 5
-  return scoredCandidates.sort((a, b) => b.score - a.score).slice(0, 5);
+  const sorted = scoredCandidates.sort((a, b) => b.score - a.score).slice(0, 5);
+
+  return {
+    results: sorted,
+    usage: {
+      inputTokens: result.usage?.promptTokens ?? 0,
+      outputTokens: result.usage?.completionTokens ?? 0,
+    },
+  };
+}
+
+// Keep old function for backwards compatibility
+export async function rerank(
+  question: string,
+  candidates: Hit[]
+): Promise<Array<Hit & { score: number }>> {
+  const res = await rerankWithUsage(question, candidates);
+  return res.results;
 }

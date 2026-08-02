@@ -101,5 +101,9 @@ MOST IMPORTANT RULES:
     answer: answerText,
     sources,
     noInfo,
+    usage: {
+      inputTokens: result.usage?.promptTokens ?? 0,
+      outputTokens: result.usage?.completionTokens ?? 0,
+    },
   };
 }

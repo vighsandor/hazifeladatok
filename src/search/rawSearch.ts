@@ -10,12 +10,24 @@ export interface Hit {
   distance: number;
 }
 
-export async function embedQuery(q: string): Promise<number[]> {
+export interface EmbedResult {
+  embedding: number[];
+  usage: {
+    tokens: number;
+  };
+}
+
+export async function embedQuery(q: string): Promise<EmbedResult> {
   const result = await embed({
     model: openai.embedding('text-embedding-3-small'),
     value: q,
   });
-  return result.embedding;
+  return {
+    embedding: result.embedding,
+    usage: {
+      tokens: result.usage?.tokens ?? 0,
+    },
+  };
 }
 
 export async function rawSearch(queryEmbedding: number[], k: number): Promise<Hit[]> {
