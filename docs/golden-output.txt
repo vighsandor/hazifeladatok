@@ -1,0 +1,87 @@
+﻿
+> ai-project@0.1.0 golden
+> tsx src/golden.ts
+
+🚀 Golden Set Runner - ETSI Signature Standards
+
+Running 10 test cases...
+
+✓ Test 1/10: What are the PAdES baseline signature levels
+✓ Test 2/10: How is a PAdES document time-stamp signature (PAdE...
+✓ Test 3/10: What is the difference between the PAdES-DTS-BET a...
+✓ Test 4/10: Does a PAdES document time-stamp prove who signed ...
+✓ Test 5/10: What does the ETSI time-stamping protocol and time...
+✓ Test 6/10: Which timestamp is required to reach the PAdES B-T...
+✓ Test 7/10: Mit bizonyít egy PAdES dokumentum-időbélyeg, és mi...
+✓ Test 8/10: Which cryptographic hash algorithms does ETSI reco...
+✓ Test 9/10: How does PAdES support long-term availability and ...
+✓ Test 10/10: How do I add a visible handwritten signature image...
+
+======================================================================================================================================================
+OUTPUT 1: Summary Table (10 test cases)
+======================================================================================================================================================
+| ID | Question (abbr.) | Expected | NYERS top-1 | TELJES top-1 | noInfo |
+|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1  | What are the PAdES baseline signature levels | ETSI EN 319 142-1, 6.x (B-B/B-T/B-LT/B-LTA) | ETSI EN 319 142-1:1 Scope (0.2693)  | ETSI EN 319 142-1:6.1 Signature levels (10.00) | false   |
+| 2  | How is a PAdES document time-stamp signature (PAdE... | ETSI TS 119 142-3, 1/4.1/6.1   | ETSI TS 119 142-3:4.1 General requirements for PAdES-DTS signatures (0.1435) | ETSI TS 119 142-3:1 Scope (9.00)    | false   |
+| 3  | What is the difference between the PAdES-DTS-BET a... | ETSI TS 119 142-3, 6.1         | ETSI TS 119 142-3:6.1 Signature levels (0.3252) | ETSI TS 119 142-3:6.1 Signature levels (9.00) | false   |
+| 4  | Does a PAdES document time-stamp prove who signed ... | ETSI TS 119 142-3, 1/4.1 (no signer identification) | ETSI TS 119 142-3:4.1 General requirements for PAdES-DTS signatures (0.2476) | ETSI TS 119 142-3:1 Scope (7.00)    | false   |
+| 5  | What does the ETSI time-stamping protocol and time... | ETSI EN 319 422                | ETSI EN 319 422:1 Scope (0.2079)    | ETSI EN 319 422:1 Scope (10.00)     | false   |
+| 6  | Which timestamp is required to reach the PAdES B-T... | ETSI EN 319 142-1 (B-T signature time-stamp) + EN 319 422 | ETSI EN 319 142-1:6.1 Signature levels (0.3520) | ETSI EN 319 142-1:6.3 PAdES baseline signatures (9.00) | false   |
+| 7  | Mit bizonyít egy PAdES dokumentum-időbélyeg, és mi... | ETSI TS 119 142-3, 1/4.1       | ETSI TS 119 142-3:4.1 General requirements for PAdES-DTS signatures (0.4686) | ETSI TS 119 142-3:1 Scope (9.00)    | false   |
+| 8  | Which cryptographic hash algorithms does ETSI reco... | ETSI TS 119 312                | ETSI EN 319 422:5.2.3 Algorithms to be used (0.1861) | ETSI TS 119 312:10.4 Recommended hash functions and signature algorithms (9.00) | false   |
+| 9  | How does PAdES support long-term availability and ... | ETSI EN 319 142-1 (B-LT/B-LTA) + TS 119 142-3 (DTS-A) | ETSI EN 319 102-1:5.6.3.1 Description (0.4079) | ETSI EN 319 102-1:5.6.3.4 Processing (7.00) | false   |
+| 10 | How do I add a visible handwritten signature image... | NINCS (out-of-domain)          | ETSI EN 319 142-2:6.3.4 Extensions Dictionary (0.5525) | ETSI EN 319 142-2:6.3.4 Extensions Dictionary (0.00) | true    |
+
+======================================================================================================================================================
+OUTPUT 2: Rerank Detail – HyDE vs Reranked for Q1 & Q4
+======================================================================================================================================================
+
+Question 1: "What are the PAdES baseline signature levels?"
+------------------------------------------------------------------------------------------------------------------------------------------------------
+HyDE Search (Top 5):
+  1. distance=0.1515 | ETSI EN 319 142-1:1 Scope
+  2. distance=0.1879 | ETSI EN 319 142-1:1 Scope
+  3. distance=0.1927 | ETSI EN 319 142-2:5.1 Features
+  4. distance=0.2247 | ETSI EN 319 142-2:1 Scope
+  5. distance=0.2340 | ETSI EN 319 142-2:1 Scope
+
+Reranked (Top 5):
+  1. score=10.00 | ETSI EN 319 142-1:6.1 Signature levels
+  2. score=9.00 | ETSI EN 319 142-1:1 Scope
+  3. score=2.00 | ETSI EN 319 142-1:1 Scope
+  4. score=1.00 | ETSI EN 319 142-2:5.1 Features
+  5. score=1.00 | ETSI EN 319 142-2:1 Scope
+
+Question 4: "Does a PAdES document time-stamp prove who signed the document?"
+------------------------------------------------------------------------------------------------------------------------------------------------------
+HyDE Search (Top 5):
+  1. distance=0.2072 | ETSI TS 119 142-3:4.1 General requirements for PAdES-DTS signatures
+  2. distance=0.2445 | ETSI TS 119 142-3:1 Scope
+  3. distance=0.2869 | ETSI EN 319 142-1:3.1 Definitions
+  4. distance=0.2960 | ETSI TS 119 142-3:3 Definitions
+  5. distance=0.2993 | ETSI EN 319 142-1:6.3 PAdES baseline signatures
+
+Reranked (Top 5):
+  1. score=7.00 | ETSI TS 119 142-3:1 Scope
+  2. score=6.00 | ETSI TS 119 142-3:6.1 Signature levels
+  3. score=2.00 | ETSI TS 119 142-3:4.1 General requirements for PAdES-DTS signatures
+  4. score=2.00 | ETSI EN 319 142-1:6.3 PAdES baseline signatures
+  5. score=1.00 | ETSI EN 319 142-1:3.1 Definitions
+
+======================================================================================================================================================
+OUTPUT 3: Negative Test – Q10 Full Answer (Out-of-Domain)
+======================================================================================================================================================
+
+Question: "How do I add a visible handwritten signature image in Adobe Acrobat?"
+
+Answer: "Erről nincs információ a tudásbázisban."
+
+Expected: "NINCS (out-of-domain)"
+noInfo: true (should be true)
+Sources: 0 (should be 0)
+✓ PASS: Answer is correct and matches expected behavior
+
+======================================================================================================================================================
+Golden set run complete.
+

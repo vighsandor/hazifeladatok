@@ -1,0 +1,49 @@
+﻿
+> ai-project@0.1.0 debug
+> tsx src/debug.ts What are the PAdES baseline signature levels?
+
+
+════════════════════════════════════════════════════
+
+📊 NYERS (Raw Question Embedding)
+
+1. 0.2693 · ETSI EN 319 142-1 · 1 Scope · "The present document defines four levels of PAdES baseline signatures addressing incremental require..."
+2. 0.2730 · ETSI EN 319 142-1 · 6.1 Signature levels · "Clause 6 defines four levels of PAdES baseline signatures, intended to facilitate interoperability a..."
+3. 0.3044 · ETSI EN 319 142-1 · 1 Scope · "The present document specifies PAdES digital signatures. PAdES signatures build on PDF signatures sp..."
+4. 0.3144 · ETSI EN 319 142-1 · 6.3 PAdES baseline signatures · "Table 1: Requirements on the main attributes for PAdES baseline signatures Attributes / Fields / Ser..."
+5. 0.3224 · ETSI EN 319 142-2 · 5.1 Features · "The profiles in this clause define PAdES signatures based on the building blocks defined in PAdES Pa..."
+6. 0.3271 · ETSI EN 319 142-1 · 6.3 PAdES baseline signatures · "This clause defines requirements on attributes, fields and services that PAdES baseline signatures h..."
+7. 0.3397 · ETSI EN 319 122-1 · 6.3 Requirements on components and services · "Table 1 shows the presence and cardinality requirements on the attributes, signature fields, and ser..."
+8. 0.3463 · ETSI EN 319 122-1 · 1 Scope · "The present document defines four levels of CAdES baseline signatures addressing incremental require..."
+9. 0.3492 · ETSI TS 119 142-3 · 6.1 Signature levels · "The profiles in this clause define PAdES signatures based on the building blocks defined in ETSI EN ..."
+10. 0.3512 · ETSI EN 319 122-1 · 6.1 Signature levels · "Clause 6 defines four levels of CAdES baseline signatures, intended to facilitate interoperability a..."
+
+════════════════════════════════════════════════════
+
+🧠 HyDE (Hypothetical Document)
+
+Generated: "The PAdES (PDF Advanced Electronic Signature) standard defines three baseline signature levels: PAdES-Basic, PAdES-Enhanced, and PAdES-Advanced. PAdES-Basic provides a simple electronic signature that meets the requirements of the eIDAS Regulation for non-repudiation. PAdES-Enhanced incorporates additional security measures, such as the use of qualified certificates and secure signature creation devices, ensuring a higher level of trust. PAdES-Advanced further enhances the signature by including features such as long-term validation and compliance with specific legal frameworks, thereby ensuring the integrity and authenticity of the signed document over time."
+
+1. 0.1500 · ETSI EN 319 142-1 · 1 Scope · "The present document specifies PAdES digital signatures. PAdES signatures build on PDF signatures sp..."
+2. 0.1869 · ETSI EN 319 142-1 · 1 Scope · "The present document defines four levels of PAdES baseline signatures addressing incremental require..."
+3. 0.1916 · ETSI EN 319 142-2 · 5.1 Features · "The profiles in this clause define PAdES signatures based on the building blocks defined in PAdES Pa..."
+4. 0.2227 · ETSI EN 319 142-2 · 1 Scope · "These PAdES extended signatures offer a higher degree of optionality than the PAdES baseline signatu..."
+5. 0.2332 · ETSI EN 319 142-2 · 1 Scope · "The present document defines multiple profiles for PAdES digital signatures which are digital signat..."
+6. 0.2474 · ETSI EN 319 142-1 · 6.1 Signature levels · "Clause 6 defines four levels of PAdES baseline signatures, intended to facilitate interoperability a..."
+7. 0.2506 · ETSI EN 319 142-1 · 4.1 General requirements for PAdES signatures based on PDF · "signatures PAdES signatures profiled in the present document build on PDF signatures specified in IS..."
+8. 0.2530 · ETSI EN 319 142-1 · 1 Scope · "NOTE: Specifically but not exclusively, PAdES digital signatures specified in the present document a..."
+9. 0.2580 · ETSI EN 319 142-1 · 2.2 Informative references · "8] ETSI TS 103 172: "Electronic Signatures and Infrastructures (ESI); PAdES Baseline Profile". [i.9]..."
+10. 0.2601 · ETSI TS 119 142-3 · 6.1 Signature levels · "The profiles in this clause define PAdES signatures based on the building blocks defined in ETSI EN ..."
+
+════════════════════════════════════════════════════
+
+✨ TELJES (HyDE + Reranked Top 5)
+
+1. 10 · ETSI EN 319 142-1 · 6.1 Signature levels · "Clause 6 defines four levels of PAdES baseline signatures, intended to facilitate interoperability a..."
+2. 9 · ETSI EN 319 142-1 · 1 Scope · "The present document defines four levels of PAdES baseline signatures addressing incremental require..."
+3. 2 · ETSI EN 319 142-1 · 1 Scope · "The present document specifies PAdES digital signatures. PAdES signatures build on PDF signatures sp..."
+4. 1 · ETSI EN 319 142-2 · 5.1 Features · "The profiles in this clause define PAdES signatures based on the building blocks defined in PAdES Pa..."
+5. 1 · ETSI EN 319 142-2 · 1 Scope · "These PAdES extended signatures offer a higher degree of optionality than the PAdES baseline signatu..."
+
+════════════════════════════════════════════════════
+

@@ -73,6 +73,29 @@ async function preview() {
     '\n🔍 Raw text sample from ETSI EN 319 132-1 (first 1500 chars before cleaning):\n'
   );
   console.log(xadesRawText.substring(0, 1500));
+
+  const xadesDoc = docs.find((d) => d.id === 'ETSI EN 319 132-1');
+  if (xadesDoc) {
+    console.log('\n\n📑 Clause headers (first 40) in cleaned ETSI EN 319 132-1:\n');
+    const clausePattern = /^\d+(\.\d+)*\s+\S/;
+    const lines = xadesDoc.text.split('\n');
+    const clauses: string[] = [];
+    for (const line of lines) {
+      if (clausePattern.test(line) && clauses.length < 40) {
+        clauses.push(line.trim());
+      }
+    }
+    clauses.forEach((clause, idx) => console.log(`${idx + 1}. ${clause}`));
+
+    console.log('\n\n📖 500-char sample around section 6 in ETSI EN 319 132-1:\n');
+    const match = xadesDoc.text.match(/\n6(\.\d+)?\s+/);
+    if (match && match.index !== undefined) {
+      const start = match.index;
+      const sample = xadesDoc.text.substring(start, start + 500);
+      console.log(sample);
+    }
+  }
+
   console.log('\n');
 }
 

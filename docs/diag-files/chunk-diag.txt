@@ -1,0 +1,96 @@
+﻿
+> ai-project@0.1.0 chunk:preview
+> tsx src/ingest/chunk-preview.ts
+
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+═══════════════════════════════════════════════════
+
+📄 ETSI EN 319 132-1 (XAdES) - Detailed Analysis
+
+Total chunks: 157
+Min: 200 chars
+Avg: 1263 chars
+Max: 1600 chars
+Chunks under 200 chars: 0
+
+Sample chunks around section 6:
+
+───────────────────────────────────────────────────
+Clause: 6.1 Signature levels
+Content (first 300 chars):
+Clause 6 defines four levels of XAdES baseline signatures, intended to facilitate interoperability and to encompass the
+life cycle of XAdES signature, namely:
+a) B-B level provides requirements for the incorporation of signed and some unsigned qualifying properties when
+the signature is generated.
+b
+
+───────────────────────────────────────────────────
+Clause: 6.1 Signature levels
+Content (first 300 chars):
+NOTE 3: B-LTA level targets long term availability and integrity of the validation material of digital signatures
+over long term. The B-LTA level can help to validate the signature beyond many events that limit its
+validity (for instance, the weakness of used cryptographic algorithms, or expiration 
+
+───────────────────────────────────────────────────
+Clause: 6.2.1 Algorithm requirements
+Content (first 300 chars):
+The algorithms and key lengths used to generate and augment digital signatures should be as specified in ETSI
+TS 119 312 [i.14].
+NOTE 1: Cryptographic suites recommendations defined in ETSI TS 119 312 [i.14] can be superseded by national
+recommendations.
+NOTE 2: IETF RFC 6931 [i.8] defines a set of 
+
+───────────────────────────────────────────────────
+Clause: 6.2.2 Notation for requirements
+Content (first 300 chars):
+The present clause describes the notation used for defining the requirements of the different XAdES signature levels.
+The requirements on the qualifying properties and certain other signature's elements for each XAdES signature level are
+expressed in table 2. A row in the table either specifies requ
+
+───────────────────────────────────────────────────
+Clause: 6.2.2 Notation for requirements
+Content (first 300 chars):
+2) Column "Presence in B-B-Level": This cell contains the specification of the presence of the qualifying
+property or other signature's element, or the provision of a service, for XAdES-B-B signatures.
+3) Column "Presence in B-T level": This cell contains the specification of the presence of the qua
+
+
+═══════════════════════════════════════════════════
+
+📊 All 20 Documents - Global Statistics
+
+Total chunks (all 20 docs): 1096
+Global min: 200 chars
+Global avg: 1119 chars
+Global max: 1600 chars
+
+Chunks per document:
+
+  ETSI EN 319 102-1         → 201 chunks
+  ETSI EN 319 122-1         → 119 chunks
+  ETSI EN 319 122-2         → 25 chunks
+  ETSI TS 119 122-3         → 19 chunks
+  ETSI EN 319 132-1         → 157 chunks
+  ETSI EN 319 132-2         → 30 chunks
+  ETSI TS 119 132-3         → 34 chunks
+  ETSI EN 319 142-1         → 41 chunks
+  ETSI EN 319 142-2         → 55 chunks
+  ETSI TS 119 142-3         → 15 chunks
+  ETSI EN 319 162-1         → 53 chunks
+  ETSI EN 319 162-2         → 13 chunks
+  ETSI TS 119 312           → 49 chunks
+  ETSI EN 319 401           → 38 chunks
+  ETSI EN 319 411-1         → 124 chunks
+  ETSI EN 319 411-2         → 57 chunks
+  ETSI EN 319 412-1         → 24 chunks
+  ETSI EN 319 412-2         → 17 chunks
+  ETSI EN 319 412-3         → 5 chunks
+  ETSI EN 319 422           → 20 chunks
+
+═══════════════════════════════════════════════════
+

@@ -1,0 +1,130 @@
+﻿
+> ai-project@0.1.0 preview
+> tsx src/ingest/preview.ts
+
+
+📦 unpdf version: ^1.1.1
+
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+📄 Loaded 20 documents
+
+📊 Document Statistics:
+ID | File Size (KB) | Raw Chars | Clean Chars | Words
+───────────────────────────────────────────────────────────────────────────
+ETSI EN 319 102-1         | 1656.15        | 247879     | 216102      | 32464
+ETSI EN 319 122-1         | 544.15         | 164134     | 144673      | 19981
+ETSI EN 319 122-2         | 102.44         | 37963      | 33816       | 5178
+ETSI TS 119 122-3         | 292.25         | 31934      | 27400       | 4013
+ETSI EN 319 132-1         | 371.75         | 213132     | 194303      | 25287
+ETSI EN 319 132-2         | 99.53          | 42418      | 38086       | 5651
+ETSI TS 119 132-3         | 108.49         | 43725      | 37857       | 5179
+ETSI EN 319 142-1         | 216.37         | 59021      | 52291       | 8015
+ETSI EN 319 142-2         | 304.59         | 74142      | 61232       | 9388
+ETSI TS 119 142-3         | 64.33          | 23228      | 19222       | 2963
+ETSI EN 319 162-1         | 982.22         | 77032      | 65646       | 9757
+ETSI EN 319 162-2         | 65.82          | 23668      | 19313       | 2745
+ETSI TS 119 312           | 167.29         | 70981      | 58757       | 8667
+ETSI EN 319 401           | 93.62          | 49167      | 41359       | 6158
+ETSI EN 319 411-1         | 347.06         | 176074     | 156599      | 23608
+ETSI EN 319 411-2         | 189.67         | 94825      | 73107       | 10862
+ETSI EN 319 412-1         | 89.16          | 37110      | 31175       | 4427
+ETSI EN 319 412-2         | 85.35          | 31753      | 24377       | 3634
+ETSI EN 319 412-3         | 58.59          | 16208      | 12428       | 1861
+ETSI EN 319 422           | 68.48          | 25319      | 17884       | 2758
+
+🔍 Raw text sample from ETSI EN 319 132-1 (first 1500 chars before cleaning):
+
+ETSI EN 319 132-1 V1.2.1 (2022-02)
+Electronic Signatures and Infrastructures (ESI);
+XAdES digital signatures;
+Part 1: Building blocks and XAdES baseline signatures
+
+EUROPEAN STANDARD
+ETSI
+ETSI EN 319 132-1 V1.2.1 (2022-02)2
+Reference
+REN/ESI-0019132-1v121
+Keywords
+electronic signature, security, XAdES, XML
+ETSI
+650 Route des Lucioles
+F-06921 Sophia Antipolis Cedex - FRANCE
+Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+Siret N° 348 623 562 00017 - APE 7112B
+Association à but non lucratif enregistrée à la
+Sous-Préfecture de Grasse (06) N° w061004871
+Important notice
+The present document can be downloaded from:
+http://www.etsi.org/standards-search
+The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+Users of the present document should be aware that the document may be subject to revision or change of status.
+Information on the current status of this and other ETSI documents is available at
+https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+If you find errors in the present document, please send your comment to one of the following services:
+https://portal.etsi.org/People/CommiteeSuppo
+
+
+📑 Clause headers (first 40) in cleaned ETSI EN 319 132-1:
+
+1. 650 Route des Lucioles
+2. 5.5.2 The ArchiveTimeStamp qualifying property defined in namespace with URI
+3. 1 Scope
+4. 2 References
+5. 2.1 Normative references
+6. 2.2 Informative references
+7. 28 July 2010, setting out measures facilitating the use of procedures by electronic means through
+8. 3 Definition of terms, symbols, abbreviations and
+9. 3.1 Terms
+10. 3.2 Symbols
+11. 3.3 Abbreviations
+12. 3.4 Terminology
+13. 4 General Syntax
+14. 4.1 General requirements
+15. 4.2 XML Namespaces
+16. 4.3 The QualifyingProperties container
+17. 4.3.1 Semantics and syntax
+18. 4.3.2 The SignedProperties container
+19. 4.3.3 The UnsignedProperties container
+20. 4.3.4 The SignedSignatureProperties container
+21. 4.3.5 The SignedDataObjectProperties container
+22. 4.3.6 The UnsignedSignatureProperties container
+23. 4.3.7 The UnsignedDataObjectProperties container
+24. 4.4 Incorporating qualifying properties into XAdES signatures
+25. 4.4.1 General requirements
+26. 4.4.2 Signing properties
+27. 4.4.3 The QualifyingPropertiesReference element
+28. 4.5 Managing canonicalization of XML nodesets
+29. 5 Qualifying properties semantics and syntax
+30. 5.1 Auxiliary syntax
+31. 5.1.1 The AnyType data type
+32. 5.1.2 The ObjectIdentifierType data type
+33. 5.1.3 The EncapsulatedPKIDataType data type
+34. 5.1.4 Types for electronic time-stamps management
+35. 5.1.4.1 Semantics
+36. 5.1.4.2 Containers for electronic time-stamps
+37. 5.1.4.3 The GenericTimeStampType data type
+38. 5.1.4.4 The XAdESTimeStampType data type
+39. 5.1.4.4.1 Semantics and syntax
+40. 5.1.4.4.2 Include mechanism
+
+
+📖 500-char sample around section 6 in ETSI EN 319 132-1:
+
+
+6 XAdES baseline signatures
+6.1 Signature levels
+Clause 6 defines four levels of XAdES baseline signatures, intended to facilitate interoperability and to encompass the
+life cycle of XAdES signature, namely:
+a) B-B level provides requirements for the incorporation of signed and some unsigned qualifying properties when
+the signature is generated.
+b) B-T level provides requirements for the generation and inclusion, for an existing signature, of a trusted token
+proving that the signature itself ac
+
+

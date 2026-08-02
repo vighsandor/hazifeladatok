@@ -1,0 +1,98 @@
+﻿
+> ai-project@0.1.0 search:preview
+> tsx src/search/search-preview.ts
+
+
+🔍 Grounded Answer Generation
+
+═══════════════════════════════════════════════════
+
+❓ Query: "What are the XAdES baseline signature levels?"
+
+Answer:
+According to [ETSI EN 319 132-1, 6.1], there are four levels of XAdES baseline signatures:
+
+a) **B-B level** provides requirements for the incorporation of signed and some unsigned qualifying properties when the signature is generated [ETSI EN 319 132-1, 6.1].
+
+b) **B-T level** provides requirements for the generation and inclusion, for an existing signature, of a trusted token proving that the signature itself actually existed at a certain date and time [ETSI EN 319 132-1, 6.1].
+
+c) **B-LT level** provides requirements for the incorporation of all the material required for validating the signature in the signature document. This level aims to tackle the long term availability of the validation material [ETSI EN 319 132-1, 6.1].
+
+d) **B-LTA level** provides requirements for the incorporation of electronic time-stamps that allow validation of the signature long time after its generation. This level aims to tackle the long term availability and integrity of the validation material [ETSI EN 319 132-1, 6.1].
+
+These levels address incremental requirements to maintain the validity of the signatures over the long term, in a way that a certain level always addresses all the requirements addressed at levels that are below it [ETSI EN 319 132-1, 1].
+
+Sources:
+  - ETSI EN 319 132-1 | 6.1 Signature levels
+  - ETSI EN 319 132-1 | 1 Scope
+  - ETSI EN 319 132-2 | 1 Scope
+  - ETSI EN 319 132-1 | 1 Scope
+  - ETSI EN 319 132-2 | 4.1 Overview
+
+───────────────────────────────────────────────────
+
+❓ Query: "Which data must a qualified certificate for a natural person contain?"
+
+Answer:
+Based on the provided context, a qualified certificate for a natural person must contain the following data:
+
+**Subject Field Attributes:**
+- **countryName** [ETSI EN 319 412-2, 4.2.3.2]
+- **Choice of (givenName and surname) or pseudonym** [ETSI EN 319 412-2, 4.2.3.2]
+- **serialNumber** [ETSI EN 319 412-2, 4.2.3.2]
+- **commonName** [ETSI EN 319 412-2, 4.2.3.2]
+
+Each attribute shall be limited to a single instance [ETSI EN 319 412-2, 4.2.3.2].
+
+**Additional Requirements:**
+- The **countryName** attribute shall specify a country that is consistent with the legal jurisdiction under which certificates are issued [ETSI EN 319 412-2, 4.2.3.2]
+
+**Certificate Extensions:**
+- The certificate shall include **all appropriate qcStatements** as defined in ETSI EN 319 412-5 [ETSI EN 319 411-2, 6.6.1, GEN-6.6.1-02]
+- The certificate shall include **at least one policy identifier** (either QCP-n or QCP-l related) [ETSI EN 319 411-2, 6.6.1, GEN-6.6.1-05]
+
+**Special Cases:**
+- If the certificate includes the **eIDAS natural person semantics identifier**, the serialNumber must comply with the eIDAS PersonIdentifier attribute requirements, and the surname attribute must be equivalent to the eIDAS FamilyName attribute [ETSI EN 319 412-1, 5.1.5]
+
+Sources:
+  - ETSI EN 319 412-1 | 5.1.5 eIDAS Natural person semantics identifier
+  - ETSI EN 319 412-2 | 4.2.3.2 Natural person issuers
+  - ETSI EN 319 411-2 | 6.6.1 Certificate Profile
+  - ETSI EN 319 411-1 | 9.2.4 "Use case for identity proofing by authentication using eID means", or 9.2.5 "Use case for identity
+  - ETSI EN 319 412-2 | 1 Scope
+
+───────────────────────────────────────────────────
+
+❓ Query: "How is a PAdES document time-stamp signature defined?"
+
+Answer:
+Based on the provided context, a PAdES document time-stamp signature (PAdES-DTS) is defined as follows:
+
+**Purpose and Nature:**
+PAdES-DTS is a type of PDF digital signature based on time-stamps that is "intended to specifically prove the integrity and existence of a PDF document as defined in ISO 32000-1 [1], rather than proving any form of authentication or proof of origin" [ETSI TS 119 142-3, 1 Scope].
+
+**Key Characteristics:**
+- It "provides only a proof of integrity of the content represented in the PDF document, and the use of a Document Time-stamp adds a proof of existence of the document itself" [ETSI TS 119 142-3, 4.1].
+
+- Unlike other PAdES profiles, it does not incorporate "signed and unsigned attributes aimed at proving the authenticity of the signer by means of a digital certificate issued to a natural or legal person" [ETSI TS 119 142-3, 4.1].
+
+- "This format does not meet the requirements of advanced electronic signature and advanced electronic seal as defined in Regulation (EU) No 910/2014 [i.4], as it is not capable of identifying the signer" [ETSI TS 119 142-3, 1 Scope].
+
+**Signature Levels:**
+PAdES-DTS defines two levels:
+- **PAdES-DTS-BET**: "defines requirements for the generation of a basic PAdES-DTS signature providing a proof of existence and integrity of the document"
+- **PAdES-DTS-A**: "defines requirements for the incorporation of electronic time-stamps that allow validation of the PAdES-DTS signature long time after its generation" [ETSI TS 119 142-3, 6.1]
+
+Sources:
+  - ETSI TS 119 142-3 | 1 Scope
+
+───────────────────────────────────────────────────
+
+❓ Query: "What is the capital of France?"
+
+Answer:
+Erről nincs információ a tudásbázisban.
+
+
+───────────────────────────────────────────────────
+
