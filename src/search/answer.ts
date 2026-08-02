@@ -8,10 +8,26 @@ export interface Grounded {
   noInfo: boolean;
 }
 
+function detectLanguage(text: string): 'en' | 'hu' {
+  const hungarianChars = /[áéíóöőúüűaa-z]/i.test(text);
+  const hungarianWords = /\b(milyen|hogyan|mit|miben|mivel|melyik|kell|lehet|van|lehet|nincs)\b/i;
+  const englishWords = /\b(what|how|which|is|are|does|can|may|should|would)\b/i;
+  
+  const hungarianScore = hungarianWords.test(text) ? 2 : 0;
+  const englishScore = englishWords.test(text) ? 2 : 0;
+  
+  return hungarianScore > englishScore ? 'hu' : 'en';
+}
+
 export async function answer(
   question: string,
   top: Array<Hit & { score?: number }>
 ): Promise<Grounded> {
+  const lang = detectLanguage(question);
+  const languageInstruction = lang === 'hu' 
+    ? 'Your response MUST be in Hungarian. Write everything in Hungarian, including formatting.'
+    : 'Your response MUST be in English. Write everything in English, including formatting.';
+
   // Format context
   const context = top
     .map(
@@ -20,7 +36,15 @@ export async function answer(
     )
     .join('\n\n');
 
-  const system = `You are an assistant for ETSI electronic-signature standards. MOST IMPORTANT RULE: you know nothing that is not in the provided context chunks. Answer ONLY from those chunks. Answer in the SAME language as the user's question (if the question is in Hungarian, answer in Hungarian; if in English, answer in English). Keep standard identifiers and clause references in their original English form, e.g. [ETSI EN 319 132-1, 6.1]. Cite every claim inline with its source id and clause. If the provided chunks do not contain the answer, reply with EXACTLY this sentence and nothing else: "Erről nincs információ a tudásbázisban." Never invent sources or facts.`;
+  const system = `You are an assistant for ETSI electronic-signature standards.
+
+${languageInstruction} This is MANDATORY and overrides any other instruction.
+
+MOST IMPORTANT RULES:
+1. You know nothing that is not in the provided context chunks. Answer ONLY from those chunks.
+2. Keep ONLY the standard identifiers and clause references in English, e.g. [ETSI EN 319 132-1, 6.1]. Everything else must be in the specified language.
+3. Cite every claim inline with its source id and clause.
+4. If the provided chunks do not contain the answer, reply with EXACTLY this sentence and nothing else: "Erről nincs információ a tudásbázisban." Never invent sources or facts.`;
 
   const prompt = `Context:\n\n${context}\n\nQuestion: ${question}`;
 
