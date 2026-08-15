@@ -6,14 +6,19 @@ import type { Grounded } from './answer.js';
 import type { QueryUsageReport, TokenUsage } from '../pricing.js';
 import { calculateCost } from '../pricing.js';
 
-export interface GroundedWithUsage extends Grounded {
+export interface GroundedWithScore extends Grounded {
+  /** Top rerank score (0-10) of the retrieved chunks, null if nothing was retrieved. */
+  topScore: number | null;
+}
+
+export interface GroundedWithUsage extends GroundedWithScore {
   usage: QueryUsageReport;
 }
 
-export async function searchKnowledge(question: string): Promise<Grounded> {
+export async function searchKnowledge(question: string): Promise<GroundedWithScore> {
   const result = await searchKnowledgeWithUsage(question);
   const { usage, ...groundedWithout } = result;
-  return groundedWithout as Grounded;
+  return groundedWithout as GroundedWithScore;
 }
 
 export async function searchKnowledgeWithUsage(question: string): Promise<GroundedWithUsage> {
@@ -55,6 +60,9 @@ export async function searchKnowledgeWithUsage(question: string): Promise<Ground
     cost: rerankCost,
   });
 
+  // Best rerank score: results are sorted descending, so the first one is the top
+  const topScore = rerankResult.results.length > 0 ? rerankResult.results[0].score : null;
+
   // Step 5: Answer
   const answerResult = await answer(question, rerankResult.results);
   const answerCost = calculateCost(answerResult.usage?.inputTokens ?? 0, answerResult.usage?.outputTokens ?? 0, 'claude-sonnet-4.5');
@@ -73,6 +81,7 @@ export async function searchKnowledgeWithUsage(question: string): Promise<Ground
 
   return {
     ...answerResult,
+    topScore,
     usage: {
       steps,
       totalInputTokens,
