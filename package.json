@@ -15,6 +15,7 @@
     "db:dump": "node scripts/dump-db.mjs",
     "db:restore": "node scripts/restore-db.mjs",
     "web": "tsx src/server.ts",
+    "report": "tsx src/support/report.ts",
     "test": "vitest"
   },
   "dependencies": {
