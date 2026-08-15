@@ -1,7 +1,3 @@
-﻿
-> ai-project@0.1.0 report
-> tsx src/support/report.ts
-
 📊 Interakciós riport
 ──────────────────────────────────────────────
 Összes interakció:        24
