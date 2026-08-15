@@ -1,0 +1,39 @@
+{
+  "name": "ai-project",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "TypeScript ESM AI project",
+  "scripts": {
+    "migrate": "tsx src/db/migrate.ts",
+    "knowledge:ingest": "tsx src/knowledge/ingest.ts",
+    "ask": "tsx src/ask.ts",
+    "debug": "tsx src/debug.ts",
+    "preview": "tsx src/ingest/preview.ts",
+    "chunk:preview": "tsx src/ingest/chunk-preview.ts",
+    "search:preview": "tsx src/search/search-preview.ts",
+    "golden": "tsx src/golden.ts",
+    "db:dump": "node scripts/dump-db.mjs",
+    "db:restore": "node scripts/restore-db.mjs",
+    "web": "tsx src/server.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^0.0.50",
+    "@ai-sdk/openai": "^0.0.50",
+    "ai": "^3.4.0",
+    "dotenv": "^16.3.1",
+    "express": "^5.2.1",
+    "openai": "^4.52.0",
+    "pg": "^8.11.0",
+    "unpdf": "^1.1.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.10.6",
+    "@types/pg": "^8.11.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.0"
+  }
+}
