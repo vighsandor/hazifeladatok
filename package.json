@@ -17,6 +17,7 @@
     "web": "tsx src/server.ts",
     "report": "tsx src/support/report.ts",
     "demo": "tsx src/support/demo.ts",
+    "seed:traffic": "tsx src/support/seed-demo-traffic.ts",
     "test": "vitest"
   },
   "dependencies": {

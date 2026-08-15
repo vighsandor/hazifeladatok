@@ -1,0 +1,17 @@
+﻿
+> ai-project@0.1.0 report
+> tsx src/support/report.ts
+
+📊 Interakciós riport
+──────────────────────────────────────────────
+Összes interakció:        24
+  válaszolt:              15
+  eszkalált:              9
+Eszkalációs arány:        37.5 %
+Átlagos válaszidő:        8801 ms
+p90 válaszidő:            12754 ms
+Átlagos forrás/válasz:    4.87
+──────────────────────────────────────────────
+Eszkalációk oka:
+  out_of_scope: 8
+  low_confidence: 1
