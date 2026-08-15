@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 import { searchKnowledge } from './search/pipeline.js';
 import { debugRetrieval, type DebugResult } from './search/debug.js';
 import { closePool } from './db.js';
+import { customerAsk } from './support/assistant.js';
+import { SUPPORT_HTML } from './support/page.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -572,6 +574,33 @@ app.post('/api/ask', async (req: Request, res: Response) => {
   }
 });
 
+// GET /support — customer-facing page
+app.get('/support', (req: Request, res: Response) => {
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.send(SUPPORT_HTML);
+});
+
+// POST /api/support/ask — customer-facing ask with escalation
+app.post('/api/support/ask', async (req: Request, res: Response) => {
+  try {
+    const { question } = req.body;
+
+    if (!question || typeof question !== 'string') {
+      res.status(400).json({ error: 'Missing or invalid question' });
+      return;
+    }
+
+    const reply = await customerAsk(question);
+    res.json(reply);
+  } catch (error) {
+    console.error('Error in /api/support/ask:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error instanceof Error ? error.message : 'Unknown error',
+    });
+  }
+});
+
 // GET /api/debug — debug retrieval
 app.get('/api/debug', async (req: Request, res: Response) => {
   try {
@@ -602,7 +631,9 @@ app.get('/api/debug', async (req: Request, res: Response) => {
 const server = app.listen(PORT, () => {
   console.log(`\n🚀 ETSI RAG Server`);
   console.log(`   http://localhost:${PORT}`);
+  console.log(`   Ügyfél oldal: http://localhost:${PORT}/support`);
   console.log(`   API: POST http://localhost:${PORT}/api/ask`);
+  console.log(`   API: POST http://localhost:${PORT}/api/support/ask`);
   console.log(`   API: GET http://localhost:${PORT}/api/debug?q=...`);
   console.log(`\n`);
 });
