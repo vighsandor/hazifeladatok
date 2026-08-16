@@ -82,6 +82,53 @@ npm run db:dump        # a jelenlegi tudásbázis exportja SQL-be (db/knowledge_
 A kérdés nyelvét a rendszer követi: magyar kérdésre magyar válasz, a `[ETSI …]` hivatkozásokat angolul tartva.
 Tudásbázison kívüli kérdésre a válasz: „Erről nincs információ a tudásbázisban."
 
+## Ügyfélirányú PoC (záróprojekt)
+
+A fenti pipeline-ra épül egy **ügyfélnek szánt** belépési pont. A különbség a belső eszközhöz képest nem a
+keresés, hanem az, hogy **mit csinál a rendszer, ha nem elég biztos a dolgában**: ilyenkor nem válaszol,
+hanem **emberhez irányít**.
+
+**Mit csinál az ügyfél-asszisztens**
+
+- Az ügyfél kérdésére **kizárólag a tudásbázisból** válaszol, minden állítás mellett a konkrét ETSI
+  klauzulával és kattintható forrás-linkkel (mért átlag: 4,87 hivatkozás válaszonként).
+- **Bizonytalanság esetén eszkalál**: ha nincs támasz a kérdésre (`out_of_scope`), vagy a legjobb találat
+  pontszáma gyenge (`topScore < 6` → `low_confidence`), az ügyfél tartalmi válasz helyett egy **hivatkozási
+  számot** kap, és a kérdés bekerül a `support/handoffs.jsonl`-ba egy szakembernek.
+- Az oldal tetején **AI-jelölés** és a *„ne adj meg személyes vagy bizalmas adatot"* figyelmeztetés.
+- Minden interakció naplózódik a `logs/interactions.jsonl`-ba (időbélyeg, kérdés, mód, magabiztosság,
+  válaszidő, forrás-szám) — a válasz szövege **nem**.
+
+```bash
+# ügyfél-felület indítása → http://localhost:3000/support
+npm run web
+
+# end-to-end demó: egy megválaszolt kérdés + egy eszkaláció
+npm run demo
+
+# minta-forgalom generálása (15 hatókörön belüli + 5 kívüli kérdés)
+npm run seed:traffic
+
+# metrikák a naplóból: válaszidő (átlag, p90), deflektált és eszkalációs arány
+npm run report
+```
+
+A `POST /api/support/ask` végpont ugyanezt adja JSON-ban (`mode`, `answer`, `sources`, `handoffId`,
+`reason`, `latencyMs`). A belső felület (`/`, `POST /api/ask`) változatlanul elérhető.
+
+**Mért értékek** (`docs/meresi-adatok.txt`, 24 interakció): átlag **8 801 ms**, p90 **12 754 ms**,
+eszkalációs arány **37,5 %** (szintetikus mintán, felülről torzított), **4,87** forrás/válasz.
+
+**Üzleti dokumentumok**
+
+| Dokumentum | Miről szól |
+|---|---|
+| [`docs/business-case.md`](docs/business-case.md) | One-pager: as-is/to-be, ROI-levezetés, költség, kockázat, mit kérünk |
+| [`docs/prezentacio.md`](docs/prezentacio.md) | 8 diás vezetői prezentáció (5 perc) |
+| [`docs/adatterkep.md`](docs/adatterkep.md) | Egy ügyfélkérés teljes útja: mi marad nálunk, mi lép ki |
+| [`docs/meresi-terv.md`](docs/meresi-terv.md) | Mit mérünk, miből, milyen ritmusban, kinek |
+| [`docs/kerdeslap.md`](docs/kerdeslap.md) | Felkészülés a kényes kérdésekre (6 kapott + 2 saját) |
+
 ## Reprodukció másik környezetben
 
 A `db/knowledge_dump.sql` a teljes beágyazott tudásbázist tartalmazza (1 657 chunk), így másik gépen
