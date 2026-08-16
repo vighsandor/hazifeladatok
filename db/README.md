@@ -46,11 +46,8 @@ If you're setting up on a new database server:
    npm run db:restore
    ```
 
-3. **Verification**:
-   ```bash
-   # Query should return ~1,657 rows
-   psql $DATABASE_URL -c "SELECT COUNT(*) FROM knowledge_chunks;"
-   ```
+3. **Verification**: `npm run db:restore` prints the row count before and after the load
+   (expected: 1,657 rows).
 
 ### Option B: Rebuild from Source PDFs
 
@@ -67,22 +64,29 @@ This re-processes all 20 PDFs, re-chunks, re-embeds, and inserts into the databa
 
 ## Scripts
 
+Both scripts talk to PostgreSQL through the `pg` client. **No `pg_dump` / `psql` needed.**
+
 ### Dump (Export)
 ```bash
 npm run db:dump
 ```
 Exports the current `knowledge_chunks` table to `db/knowledge_dump.sql`.
 - Automatically creates the `db/` directory if missing
-- Prepends `CREATE EXTENSION IF NOT EXISTS vector;` if not present
-- Requires `pg_dump` command-line tool (PostgreSQL client)
+- **Data only** — plain `INSERT` statements, no schema. The schema comes from
+  `npm run migrate` (`src/db/migrate.ts`), which is its single source of truth.
+- Embeddings are written as `'[...]'::vector` literals, timestamps as quoted ISO strings
+- Each `INSERT` carries `ON CONFLICT DO NOTHING`, so restores are idempotent
 
 ### Restore (Import)
 ```bash
-npm run db:restore
+npm run db:restore            # load next to existing data (idempotent)
+npm run db:restore -- --fresh # empty the table first, then load
 ```
 Imports the dump file into the target database specified by `.env DATABASE_URL`.
-- Requires `psql` command-line tool (PostgreSQL client)
-- Warns about pgvector prerequisite
+- **Run `npm run migrate` first** — the dump carries no schema
+- Runs in a single transaction; with `--fresh` the `TRUNCATE` is part of it, so a failed
+  load rolls back to the original content
+- Advances `knowledge_chunks_id_seq` past the restored ids
 - Does NOT call OpenAI; purely SQL-based
 
 ---
@@ -90,18 +94,14 @@ Imports the dump file into the target database specified by `.env DATABASE_URL`.
 ## Prerequisites for Production / Multi-Environment
 
 ### For dump/restore scripts to work:
-- **PostgreSQL client tools**: `pg_dump` and `psql` must be in PATH
-  - **macOS**: `brew install postgresql`
-  - **Ubuntu/Debian**: `sudo apt-get install postgresql-client`
-  - **Windows**: [Download PostgreSQL installer](https://www.postgresql.org/download/windows/) or use `pgtools`
+- **Nothing beyond `npm install`** — both scripts use the `pg` client, so no PostgreSQL
+  command-line tools are required.
 
 ### For the target database:
 - **pgvector extension**: Must be enabled
-  - The dump script handles `CREATE EXTENSION IF NOT EXISTS vector;`
-  - If restore fails with "extension vector not found", run on the target:
-    ```sql
-    CREATE EXTENSION IF NOT EXISTS vector;
-    ```
+  - `npm run migrate` runs `CREATE EXTENSION IF NOT EXISTS vector;` — the dump no longer does
+  - If that fails with "extension vector not found", the pgvector binary is missing from the
+    server (a `CREATE EXTENSION` cannot install it); use e.g. the `pgvector/pgvector:pg16` image
 
 ### For re-ingestion (if rebuilding from PDFs):
 - **OpenAI API key** in `.env` (only if using `npm run knowledge:ingest`)
@@ -111,11 +111,8 @@ Imports the dump file into the target database specified by `.env DATABASE_URL`.
 
 ## Troubleshooting
 
-### `pg_dump: command not found`
-Install PostgreSQL client tools (see Prerequisites above).
-
-### `psql: command not found`
-Same as above.
+### `relation "knowledge_chunks" does not exist`
+The dump carries data only. Run `npm run migrate` first to create the schema.
 
 ### `ERROR: extension "vector" does not exist`
 The target PostgreSQL does not have pgvector installed. Install it or use a PostgreSQL image with pgvector pre-installed (e.g., `pgvector/pgvector:pg16`).
@@ -123,7 +120,8 @@ The target PostgreSQL does not have pgvector installed. Install it or use a Post
 ### Dump file is incomplete or empty
 - Check that DATABASE_URL is correct and server is reachable
 - Verify credentials (user, password, database name)
-- Ensure the `knowledge_chunks` table exists: `psql $DATABASE_URL -c "\d knowledge_chunks"`
+- Ensure the `knowledge_chunks` table exists and is populated (`npm run migrate`, then check
+  the row count printed by `npm run db:restore`)
 
 ---
 
@@ -144,6 +142,6 @@ npm run db:restore
 
 ## File Size & Performance
 
-- **Dump file size**: ~10-15 MB (compressed with COPY binary format)
+- **Dump file size**: ~32 MB (plain `INSERT` statements; the 1536-dim vectors dominate it)
 - **Restore time**: ~10-20 seconds (depends on network and disk I/O)
 - **Query performance**: Vector similarity search (~0.2s for raw search, <0.5s with HyDE + reranking)

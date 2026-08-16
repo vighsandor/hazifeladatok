@@ -13,7 +13,7 @@
     "search:preview": "tsx src/search/search-preview.ts",
     "golden": "tsx src/golden.ts",
     "db:dump": "node scripts/dump-db.mjs",
-    "db:restore": "node scripts/restore-db.mjs",
+    "db:restore": "tsx scripts/restore-db.ts",
     "web": "tsx src/server.ts",
     "report": "tsx src/support/report.ts",
     "demo": "tsx src/support/demo.ts",
