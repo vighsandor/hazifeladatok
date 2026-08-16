@@ -123,6 +123,7 @@ eszkalációs arány **37,5 %** (szintetikus mintán, felülről torzított), **
 
 | Dokumentum | Miről szól |
 |---|---|
+| [`docs/fajdalom-osszegzo.md`](docs/fajdalom-osszegzo.md) | A tíz fájdalomból melyiket oldja meg a PoC (#1, #2, #9, részben #3) — és melyiket nem |
 | [`docs/business-case.md`](docs/business-case.md) | One-pager: as-is/to-be, ROI-levezetés, költség, kockázat, mit kérünk |
 | [`docs/prezentacio.md`](docs/prezentacio.md) | 8 diás vezetői prezentáció (5 perc) |
 | [`docs/adatterkep.md`](docs/adatterkep.md) | Egy ügyfélkérés teljes útja: mi marad nálunk, mi lép ki |

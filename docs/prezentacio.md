@@ -17,11 +17,11 @@ Működő PoC. Ma nem technológiai kérdésről döntünk, hanem egy 4 hetes pi
 | Ismétlődő kérdések | 30 support-óra/hó *[ökölszám]* | ~0 óra a deflektált részre |
 | Konzisztencia | Ügyintézőnként eltérő, forrás nélkül | **4,87 ETSI hivatkozás/válasz** *(mért)* |
 
-**Amit megold:** #1 válaszidő · #2 önkiszolgálás · #9 konzisztencia · #3 *[a fájdalomlista szerinti
-megnevezés]* — részben
+**Amit megold:** #1 munkaidőn kívüli válasz · #2 ismétlődő kérdések · #9 konzisztencia ·
+#3 új ügyfél eligazodása — részben
 
 **Amit NEM old meg:** #4 ügystátusz-lekérdezés · #7 szerződés és papírmunka · #10 lemorzsolódás
-Ezekhez nem nyúl, és nem is ígérjük, hogy hozzányúl.
+Ezekhez nem nyúl, és nem is ígérjük, hogy hozzányúl. A teljes bontás: `docs/fajdalom-osszegzo.md`
 
 ---
 
